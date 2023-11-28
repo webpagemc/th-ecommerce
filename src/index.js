@@ -1,27 +1,15 @@
-import express from "express";
-import enviroment from "./config/dotenv.js";
+import express from "express"; //importar express
+import enviroment from "./config/dotenv.js"; //importar variables de entorno 
+import productRouter from "./routes/products.router.js";
 
+//creamos el servidor express
 const app = express();
 
+//implementamos middlewares
 app.use(express.json());
-app.use(express.urlencoded())
+app.use(express.urlencoded());
 
-app.get("/products/:id",(req ,res)=>{
+app.use("/products",productRouter);
 
-    const id = req.params.id;
-    const body = req.body
-
-    console.log(id);
-    console.log(body);
-
-    res.send(`El parametro de url es ${id} y el nombre del producto es ${body.nombre}`)
-
-});
-
-
-
-app.listen(enviroment.PORT , ()=>{
-
-    console.log("Server on 8080!");
-
-});
+//el metodo listen sirve para levantar el servidor en un determinado puerto
+app.listen(enviroment.PORT , ()=>{ console.log("Server on 8080!") });
