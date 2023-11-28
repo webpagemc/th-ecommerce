@@ -1,10 +1,18 @@
 const parsers = {
 
-    handleResponse:(msj, status, data)=>{
+    handleResponse:(data)=>{
 
         return {
-            msj:msj,
-            status:status,
+            msj:"exitoso",
+            status:200,
+            data:data
+        }
+
+    },
+    handleError: (data)=>{
+        return {
+            msj:"Error",
+            status:400,
             data:data
         }
 

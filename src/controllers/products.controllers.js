@@ -5,15 +5,13 @@ const productController = {
     getAllProducts:(req ,res)=>{
 
         try {
-
-            throw new Error({data:"404"});
-
-            const response = parsers.handleResponse("Request Successfull", 200, [])
+ throw new Error();
+            const response = parsers.handleResponse([])
             res.status(200).send(response)
             
         } catch (err) { 
 
-            const response = parsers.handleResponse("Error", 400, err)
+            const response = parsers.handleError(err)
             res.status(400).send(response) 
 
         }
@@ -22,25 +20,65 @@ const productController = {
 
     getOneProduct:(req ,res)=>{
 
-        res.status(200).send({msj:"Request Successfull"})
+        try {
+
+            const response = parsers.handleResponse([])
+            res.status(200).send(response)
+            
+        } catch (err) { 
+
+            const response = parsers.handleError(err)
+            res.status(400).send(response) 
+
+        }
     
     },
     
     createProduct:(req ,res)=>{
 
-        res.status(200).send({msj:"Request Successfull"})
+        try {
+
+            const response = parsers.handleResponse([])
+            res.status(200).send(response)
+            
+        } catch (err) { 
+
+            const response = parsers.handleError(err)
+            res.status(400).send(response) 
+
+        }
     
     },
 
     updateProduct:(req ,res)=>{
 
-        res.status(200).send({msj:"Request Successfull"})
+        try {
+
+            const response = parsers.handleResponse([])
+            res.status(200).send(response)
+            
+        } catch (err) { 
+
+            const response = parsers.handleError(err)
+            res.status(400).send(response) 
+
+        }
     
     },
 
     deleteProduct:(req ,res)=>{
 
-        res.status(200).send({msj:"Request Successfull"})
+        try {
+
+            const response = parsers.handleResponse([])
+            res.status(200).send(response)
+            
+        } catch (err) { 
+
+            const response = parsers.handleError(err)
+            res.status(400).send(response) 
+
+        }
     
     }
 }
