@@ -5,7 +5,7 @@ const productController = {
     getAllProducts:(req ,res)=>{
 
         try {
- throw new Error();
+            
             const response = parsers.handleResponse([])
             res.status(200).send(response)
             

@@ -5,7 +5,8 @@ config(); //se ejecuta config para habilitar las variables de entorno (.env)
 //creamos un objeto que almacenara las variables de entorno
 const enviroment = {
 
-    PORT:process.env.PORT
+    PORT:process.env.PORT,
+    DB_URL:process.env.DB_URL
 
 }
 
