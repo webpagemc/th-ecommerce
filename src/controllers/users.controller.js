@@ -1,4 +1,4 @@
-import parsers from "../utils/parsers";
+import parsers from "../utils/parsers.js";
 
 const userController = {
     getAllUsers: (req, res) => {
@@ -14,7 +14,6 @@ const userController = {
 
         }
     },
-
 
     getUserById: (req, res) => {
         try {

@@ -9,9 +9,11 @@ const connectDB = async() => {
         await mongoose.connect(enviroment.DB_URL);
         console.log("Connection Successfull");
         
-    } catch (err) { 
+    } catch (err) {
+
         parsers.handleError(err);
-        console.log("Error!")
+        console.log("Error!");
+        
     }
 
 }
