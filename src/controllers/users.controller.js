@@ -1,6 +1,7 @@
 import parsers from "../utils/parsers.js";
 
 const userController = {
+
     getAllUsers: (req, res) => {
         try {
 
@@ -57,7 +58,6 @@ const userController = {
         }
     },
 
-
     deleteUser: (req, res) => {
         try {
 
@@ -72,6 +72,6 @@ const userController = {
         }
     }
 
-}
+};
 
 export default userController;

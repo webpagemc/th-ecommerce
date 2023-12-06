@@ -1,12 +1,57 @@
 import parsers from "../utils/parsers.js"
+import productService from "../services/product.service.js"
 
 const productController = {
 
-    getAllProducts:(req ,res)=>{
+    getAllProducts:async(req ,res)=>{
 
         try {
+
+            const allProducts = await productService.getAll();
+            const response = parsers.handleResponse(allProducts);
+            res.status(200).send(response);
             
-            const response = parsers.handleResponse([])
+        } catch (err) { 
+
+            const response = parsers.handleError(err)
+            res.status(400).send(response) 
+
+        }
+    
+    },
+
+    getOnlySamsung: async(req, res) => {
+
+        const samsungs = await productService.getAll({enterprise:"Samsung"})
+        res.status(200).send(samsungs)
+
+    },
+
+    getOneProduct:async(req ,res)=>{
+
+        try {
+
+            const {id} = req.params;
+            const product = await productService.getOne(id)
+            const response = parsers.handleResponse(product)
+            res.status(200).send(response)
+            
+        } catch (err) { 
+
+            const response = parsers.handleError(err)
+            res.status(400).send(response) 
+
+        }
+    
+    },
+    
+    createProduct:async(req ,res)=>{
+
+        try {
+
+            const { body } = req;
+            const newProduct = await productService.createOne(body);
+            const response = parsers.handleResponse(newProduct)
             res.status(200).send(response)
             
         } catch (err) { 
@@ -18,27 +63,16 @@ const productController = {
     
     },
 
-    getOneProduct:(req ,res)=>{
+    updateProduct:async(req ,res)=>{
 
         try {
 
-            const response = parsers.handleResponse([])
-            res.status(200).send(response)
-            
-        } catch (err) { 
+            const {id} = req.params;
+            const {body} = req
 
-            const response = parsers.handleError(err)
-            res.status(400).send(response) 
+            const oldproductData = await productService.updateOne(id,body)
 
-        }
-    
-    },
-    
-    createProduct:(req ,res)=>{
-
-        try {
-
-            const response = parsers.handleResponse([])
+            const response = parsers.handleResponse(oldproductData);
             res.status(200).send(response)
             
         } catch (err) { 
@@ -50,27 +84,15 @@ const productController = {
     
     },
 
-    updateProduct:(req ,res)=>{
+    deleteProduct:async(req ,res)=>{
 
         try {
 
-            const response = parsers.handleResponse([])
-            res.status(200).send(response)
-            
-        } catch (err) { 
+            const {id} = req.params;
 
-            const response = parsers.handleError(err)
-            res.status(400).send(response) 
+            await productService.deleteOne(id)
 
-        }
-    
-    },
-
-    deleteProduct:(req ,res)=>{
-
-        try {
-
-            const response = parsers.handleResponse([])
+            const response = parsers.handleResponse(`Se elimino el producto con el id ${id}`)
             res.status(200).send(response)
             
         } catch (err) { 
