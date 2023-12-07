@@ -1,77 +1,60 @@
 import parsers from "../utils/parsers.js";
+import usersService from "../services/usersService.js";
 
-const userController = {
-
-    getAllUsers: (req, res) => {
+const usersController = {
+    getAllUsers: async (req, res) => {
         try {
-
-            const response = parsers.handleResponse([])
-            res.status(200).send(response)
+            const AllUsers = await usersService.getAll();
+            const response = parsers.handleResponse(AllUsers);
+            res.status(200).send(response);
 
         } catch (err) {
 
             const response = parsers.handleError(err)
             res.status(400).send(response)
-
         }
+
     },
 
-    getUserById: (req, res) => {
+    getOneUser: async (req, res) => {
         try {
-
-            const response = parsers.handleResponse([])
-            res.status(200).send(response)
-
-        } catch (err) {
-
-            const response = parsers.handleError(err)
-            res.status(400).send(response)
-
+            const oneUser = await usersService.getOne(req.params.id);
+            const response = parsers.handleResponse(oneUser);
+            res.status(200).send(response);
+        } catch (error) {
+            const response = parsers.handleError(error);
+            res.status(400).send(response);
         }
     },
-
-    createUser: (req, res) => {
+    createUser: async (req, res) => {
         try {
-
-            const response = parsers.handleResponse([])
-            res.status(200).send(response)
-
-        } catch (err) {
-
-            const response = parsers.handleError(err)
-            res.status(400).send(response)
-
+            const newUser = await usersService.createOne(req.body);
+            const response = parsers.handleResponse(newUser);
+            res.status(200).send(response);
+        } catch (error) {
+            const response = parsers.handleError(error);
+            res.status(400).send(response);
         }
     },
-
-    updateUser: (req, res) => {
+    updateUser: async (req, res) => {
         try {
-
-            const response = parsers.handleResponse([])
-            res.status(200).send(response)
-
-        } catch (err) {
-
-            const response = parsers.handleError(err)
-            res.status(400).send(response)
-
+            const updateUser = await usersService.updateOne(req.params.id, req.body);
+            const response = parsers.handleResponse(updateUser);
+            res.status(200).send(response);
+        } catch (error) {
+            const response = parsers.handleError(error);
+            res.status(400).send(response);
         }
     },
-
-    deleteUser: (req, res) => {
+    deleteUser: async (req, res) => {
         try {
-
-            const response = parsers.handleResponse([])
-            res.status(200).send(response)
-
-        } catch (err) {
-
-            const response = parsers.handleError(err)
-            res.status(400).send(response)
-
+            const deleteUser = await usersService.deleteOne(req.params.id);
+            const response = parsers.handleResponse(deleteUser);
+            res.status(200).send(response);
+        } catch (error) {
+            const response = parsers.handleError(error);
+            res.status(400).send(response);
         }
     }
-
 };
-
-export default userController;
+export default usersController;
