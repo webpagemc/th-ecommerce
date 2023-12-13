@@ -10,7 +10,8 @@ const productSchema = new Schema(
         description:{ type:String, required:false },
         code:{ type:String, required:true },
         thumbnail:{ type:String, required:false },
-        stock:{ type:String, required:true, default:0 }
+        stock:{ type:String, required:true, default:0 },
+        status:{type:Boolean, required:true, default:true }
 
 
     },{ timestamps:true }

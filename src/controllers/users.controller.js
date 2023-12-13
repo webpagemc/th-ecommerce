@@ -1,7 +1,8 @@
 import parsers from "../utils/parsers.js";
-import usersService from "../services/usersService.js";
+import usersService from "../services/users.service.js";
 
 const usersController = {
+
     getAllUsers: async (req, res) => {
         try {
             const AllUsers = await usersService.getAll();
@@ -57,4 +58,5 @@ const usersController = {
         }
     }
 };
+
 export default usersController;

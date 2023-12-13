@@ -11,6 +11,20 @@ productRouter.get("/:id",productController.getOneProduct);
 
 productRouter.post("/",productController.createProduct);
 
+productRouter.put("/:id",productController.updateProduct);
+
+productRouter.delete("/:id", productController.changeProductStatus)
+
+productRouter.delete("/definitive/:id",productController.deleteProduct);
+
+
+
+
+export default productRouter;
+
+
+//DELETE MANY:
+
 /*
 productRouter.delete("/deleteEnterprise/:enterprise", async(req, res)=>{
 
@@ -22,9 +36,3 @@ productRouter.delete("/deleteEnterprise/:enterprise", async(req, res)=>{
 
 })
 */
-
-productRouter.put("/:id",productController.updateProduct);
-
-productRouter.delete("/:id",productController.deleteProduct);
-
-export default productRouter;

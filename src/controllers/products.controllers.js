@@ -7,7 +7,7 @@ const productController = {
 
         try {
 
-            const allProducts = await productService.getAll();
+            const allProducts = await productService.getAll({status:true});
             const response = parsers.handleResponse(allProducts);
             res.status(200).send(response);
             
@@ -32,9 +32,15 @@ const productController = {
         try {
 
             const {id} = req.params;
-            const product = await productService.getOne(id)
-            const response = parsers.handleResponse(product)
-            res.status(200).send(response)
+            const product = await productService.getOne(id);
+
+            if(product.status){
+
+                const response = parsers.handleResponse(product)
+                res.status(200).send(response)
+
+            }else{ throw new Error("Product NOT exist!") }
+
             
         } catch (err) { 
 
@@ -84,6 +90,26 @@ const productController = {
     
     },
 
+    changeProductStatus:async(req, res)=>{
+
+        try {
+            
+            const {id} = req.params;
+
+            await productService.updateOne(id, { status:false });
+    
+            const response = parsers.handleResponse(`Se cambio el estado del producto con el id ${id}`)
+            res.status(200).send(response);
+            
+        } catch (err) { 
+
+            const response = parsers.handleError(err)
+            res.status(400).send(response) 
+
+        }
+
+    },
+
     deleteProduct:async(req ,res)=>{
 
         try {
@@ -92,7 +118,7 @@ const productController = {
 
             await productService.deleteOne(id)
 
-            const response = parsers.handleResponse(`Se elimino el producto con el id ${id}`)
+            const response = parsers.handleResponse(`Se elimino DEFINITIVAMENTE el producto con el id ${id}`)
             res.status(200).send(response)
             
         } catch (err) { 

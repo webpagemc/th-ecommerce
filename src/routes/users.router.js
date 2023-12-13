@@ -1,10 +1,10 @@
-import usersController from '../controllers/usersController.js';
+import usersController from "../controllers/users.controller.js";
 import express from 'express';
 
 const userRouter = express.Router();
-userRouter.get('/', usersController.getAllUsers);
+userRouter.get('/', usersController.getAllUsers );
 
-userRouter.get('/:id', usersController.getAllUsers);
+userRouter.get('/:id', usersController.getOneUser);
 
 userRouter.post('/', usersController.createUser);
 
